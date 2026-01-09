@@ -1,24 +1,118 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- EDITAR: Favicon con logo Montagut -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Dr. Sarcasmo | PNL para ventas y liderazgo sin anestesia</title>
+    <meta name="description" content="PNL aplicada para ventas, liderazgo y ejecución. Libro 'Desmotívame si puedes', mentoría 1 a 1 y programa para empresas. Agenda por WhatsApp." />
+    <meta name="keywords" content="PNL, ventas, liderazgo, coaching, Barranquilla, Dr. Sarcasmo, Julián Vargas" />
+    <meta name="author" content="Julián Vargas Montagut - Dr. Sarcasmo" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
+    <meta property="og:url" content="https://drsarcasmo.com/" />
+    <meta property="og:title" content="Dr. Sarcasmo | PNL para ventas y liderazgo sin anestesia" />
+    <meta property="og:description" content="PNL aplicada para ventas, liderazgo y ejecución. Libro 'Desmotívame si puedes', mentoría 1 a 1 y programa para empresas. Agenda por WhatsApp." />
+    <!-- EDITAR: Imagen OG con logo Montagut -->
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Dr. Sarcasmo" />
+    
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:title" content="Dr. Sarcasmo | PNL para ventas y liderazgo sin anestesia" />
+    <meta name="twitter:description" content="PNL aplicada para ventas, liderazgo y ejecución. Libro 'Desmotívame si puedes', mentoría 1 a 1 y programa para empresas." />
+    <meta name="twitter:image" content="/og.png" />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://drsarcasmo.com/" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0B0B0F" />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Julián Vargas Montagut",
+      "alternateName": "Dr. Sarcasmo",
+      "jobTitle": "Coach de PNL y Ventas",
+      "description": "Más de 20 años de experiencia en PNL aplicada para ventas y liderazgo",
+      "url": "https://drsarcasmo.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle 3B, Carrera 25",
+        "addressLocality": "Barranquilla",
+        "addressCountry": "CO"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+57-302-266-9226",
+        "contactType": "sales",
+        "availableLanguage": "Spanish"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Dr. Sarcasmo - PNL para Ventas",
+      "description": "Coaching de PNL para equipos de ventas y liderazgo empresarial",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle 3B, Carrera 25",
+        "addressLocality": "Barranquilla",
+        "addressCountry": "CO"
+      },
+      "priceRange": "$$$",
+      "telephone": "+57-302-266-9226"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo agendar una sesión con Dr. Sarcasmo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Puedes agendar directamente por WhatsApp al +57 302 266 9226 o usar el formulario de agendamiento en nuestra web."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta el libro 'Desmotívame si puedes'?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El libro físico con dedicatoria tiene un costo de $89.000 COP con envío gratis nacional. La versión PDF cuesta $50.000 COP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué incluye el programa para empresas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El programa 'Líderes Insaciables' incluye 4 formaciones de alto impacto para hasta 10 personas, más un año de mentorías grupales virtuales mensuales. Inversión: $2.000.000 COP."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
-
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

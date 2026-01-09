@@ -11,58 +11,58 @@ export const WHATSAPP_NUMBER = "573022669226";
 
 // EDITAR: Links de WhatsApp prellenados para cada ruta de conversión
 export const WHATSAPP_LINKS = {
-  // A) Acción inmediata (hero)
+  // A) Acción inmediata (Hero / sticky)
   accionInmediata: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hola Dr. Sarcasmo, quiero tomar acción ya.
+    `Hola Dr. Sarcasmo, quiero tomar acción.
 
 Nombre: _____
 Ciudad: _____
-Estoy interesado en: (1) Libro (2) Mentoría 1 a 1 (3) Programa Empresas
-Contexto rápido: _____
+Interés: Libro / Mentoría 1a1 / Empresas / Otro
+Mensaje: _____
 ¿Cuál es el siguiente paso?`
   )}`,
 
   // B) Libro físico firmado
   libroFisico: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hola Dr. Sarcasmo, quiero el libro físico con dedicatoria ($89.000 envío gratis).
+    `Hola, quiero el LIBRO FÍSICO con dedicatoria ($89.000 envío gratis).
 
 Nombre: _____
-Cédula: _____
-Dirección de envío: _____
+Dirección envío: _____
 Ciudad: _____
-Indicaciones dedicatoria: _____
-¿Cómo hacemos el pago?`
+Dedicatoria: _____
+¿Medios de pago?`
   )}`,
 
-  // C) PDF
+  // C) Libro PDF
   libroPDF: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hola Dr. Sarcasmo, quiero la versión PDF del libro ($50.000).
+    `Hola, quiero el PDF del libro ($50.000).
 
 Nombre: _____
-Correo para enviar PDF: _____
-¿Cómo hacemos el pago?`
+Correo: _____
+¿Medios de pago?`
   )}`,
 
-  // D) Mentoría 1 a 1 (oferta flash)
+  // D) Mentoría 1 a 1
   mentoria: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hola Dr. Sarcasmo, quiero reservar mentoría 1 a 1 (hoy $150.000, antes $300.000).
+    `Hola, quiero agendar MENTORÍA 1a1 (hoy $150.000).
 
 Nombre: _____
-Zona horaria: _____
-Disponibilidad: (Días/horas) _____
-Tema principal: _____
-¿Cómo se confirma la reserva?`
+Fecha preferida: _____
+Hora preferida: _____
+Tema: _____
+¿Me confirmas disponibilidad?`
   )}`,
 
-  // E) Empresas
+  // E) Programa empresas
   empresas: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hola Dr. Sarcasmo, quiero cotizar el programa para empresas ($2.000.000, hasta 10 personas, 4 formaciones+ bonus 1 año mentorías).
+    `Hola, quiero cotizar PROGRAMA EMPRESAS ($2.000.000 - hasta 10 personas).
 
 Empresa: _____
+Cargo: _____
 Ciudad: _____
-Cantidad personas: _____
-Objetivo comercial: _____
-¿Me compartes agenda y alcance?`
+Personas: _____
+Objetivo: _____
+¿Me envías propuesta?`
   )}`,
 } as const;
 
@@ -81,6 +81,43 @@ export const ADDRESS = {
  */
 export function generateWhatsAppLink(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+/**
+ * Genera un link de Google Calendar
+ * @param title - Título del evento
+ * @param date - Fecha (YYYY-MM-DD)
+ * @param time - Hora (HH:MM)
+ * @param description - Descripción del evento
+ * @param location - Ubicación
+ * @returns URL de Google Calendar
+ */
+export function generateGoogleCalendarLink(
+  title: string,
+  date: string,
+  time: string,
+  description: string = "",
+  location: string = "Online / Por confirmar"
+): string {
+  // Convertir fecha y hora a formato Google Calendar (YYYYMMDDTHHMMSS)
+  const dateTime = `${date.replace(/-/g, '')}T${time.replace(':', '')}00`;
+  
+  // Calcular fecha fin (1 hora después)
+  const startHour = parseInt(time.split(':')[0]);
+  const endHour = String(startHour + 1).padStart(2, '0');
+  const endTime = `${endHour}:${time.split(':')[1]}`;
+  const endDateTime = `${date.replace(/-/g, '')}T${endTime.replace(':', '')}00`;
+  
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: title,
+    dates: `${dateTime}/${endDateTime}`,
+    details: description,
+    location: location,
+    ctz: 'America/Bogota',
+  });
+  
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
 /**
@@ -106,4 +143,5 @@ export const ANALYTICS_EVENTS = {
   CLICK_WHATSAPP_EMPRESAS: "click_whatsapp_empresas",
   SUBMIT_FORM_TO_WHATSAPP: "submit_form_to_whatsapp",
   CLICK_MAPS: "click_maps",
+  CLICK_CALENDAR: "click_calendar",
 } as const;

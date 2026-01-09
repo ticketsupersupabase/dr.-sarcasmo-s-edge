@@ -26,12 +26,9 @@ export function EmpresasSection() {
           <div className="text-center mb-12">
             {/* EDITAR: Título */}
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Programa:{" "}
+              Programa para empresas:{" "}
               <span className="text-primary">Líderes Insaciables</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
-              PNL para ganar. Sin excusas. Sin medias tintas.
-            </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
@@ -44,8 +41,8 @@ export function EmpresasSection() {
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Calendar className="w-5 h-5 text-accent" />
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Calendar className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">
@@ -58,8 +55,8 @@ export function EmpresasSection() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Award className="w-5 h-5 text-accent" />
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Award className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">
@@ -88,26 +85,24 @@ export function EmpresasSection() {
                 Módulos incluidos
               </h3>
 
-              <ul className="space-y-4">
+              <ul className="space-y-4 mb-8">
                 {MODULOS.map((modulo, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground/90">{modulo}</span>
+                    <span className="text-foreground">{modulo}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-8">
-                <WhatsAppButton
-                  href={WHATSAPP_LINKS.empresas}
-                  variant="primary"
-                  size="lg"
-                  eventName={ANALYTICS_EVENTS.CLICK_WHATSAPP_EMPRESAS}
-                  className="w-full"
-                >
-                  Cotizar para mi empresa
-                </WhatsAppButton>
-              </div>
+              <WhatsAppButton
+                href={WHATSAPP_LINKS.empresas}
+                variant="hero"
+                size="lg"
+                eventName={ANALYTICS_EVENTS.CLICK_WHATSAPP_EMPRESAS}
+                className="w-full"
+              >
+                Cotizar para mi empresa
+              </WhatsAppButton>
             </div>
           </div>
         </div>

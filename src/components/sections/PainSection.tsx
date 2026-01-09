@@ -6,7 +6,7 @@
  * =============================================================
  */
 
-import { AlertTriangle, Users, Crown, TrendingDown } from "lucide-react";
+import { TrendingDown, Users, Crown } from "lucide-react";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { WHATSAPP_LINKS, ANALYTICS_EVENTS } from "@/lib/whatsapp";
 
@@ -14,27 +14,30 @@ import { WHATSAPP_LINKS, ANALYTICS_EVENTS } from "@/lib/whatsapp";
 const PAIN_POINTS = [
   {
     icon: TrendingDown,
-    text: "30 años de mediocridad no se borran con una charla de una hora.",
+    title: "Mediocridad repetida",
+    text: "= resultados repetidos.",
   },
   {
     icon: Users,
-    text: 'Vendedores "mendigos": si piden por favor que les compren, están programados para perder.',
+    title: "Si piden permiso para vender",
+    text: "están programados para perder.",
   },
   {
     icon: Crown,
-    text: "Liderazgo de papel: si el jefe teme dar órdenes, no hay resultados.",
+    title: "Si el líder no manda",
+    text: "el equipo manda… y pierde.",
   },
 ];
 
 export function PainSection() {
   return (
-    <section id="dolor" className="section-padding bg-carbon-light/30">
+    <section id="dolor" className="section-padding section-alt">
       <div className="container-custom">
         {/* EDITAR: Título de sección */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            ¿Tienes vendedores o un{" "}
-            <span className="text-primary">club de lectura de excusas</span>?
+            ¿Tienes vendedores… o un{" "}
+            <span className="text-primary">museo de excusas</span>?
           </h2>
         </div>
 
@@ -43,12 +46,15 @@ export function PainSection() {
           {PAIN_POINTS.map((point, index) => (
             <div
               key={index}
-              className="card-premium p-6 hover:border-primary/30 transition-all duration-300 group"
+              className="card-premium p-6 hover:border-primary/30 transition-all duration-300 group text-center"
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <point.icon className="w-6 h-6 text-primary" />
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                <point.icon className="w-7 h-7 text-primary" />
               </div>
-              <p className="text-foreground/90 text-lg leading-relaxed">
+              <p className="text-foreground font-semibold text-lg mb-1">
+                {point.title}
+              </p>
+              <p className="text-muted-foreground">
                 {point.text}
               </p>
             </div>
@@ -58,15 +64,12 @@ export function PainSection() {
         {/* EDITAR: Cierre de sección */}
         <div className="text-center max-w-2xl mx-auto">
           <p className="text-lg md:text-xl text-muted-foreground mb-8">
-            La mediocridad es opcional.{" "}
-            <span className="text-foreground font-semibold">
-              Y sale más cara que cualquier capacitación.
-            </span>
+            La mediocridad cuesta más que cualquier entrenamiento.
           </p>
 
           <WhatsAppButton
             href={WHATSAPP_LINKS.accionInmediata}
-            variant="primary"
+            variant="hero"
             size="lg"
             eventName={ANALYTICS_EVENTS.CLICK_WHATSAPP_HERO}
           >

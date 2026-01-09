@@ -6,9 +6,10 @@
   =============================================================
   DESIGN SYSTEM - DR. SARCASMO
   =============================================================
-  DARK PREMIUM THEME
-  - Fondo: Negro carbón
-  - CTAs: Rojo sangre
+  LIGHT PREMIUM THEME
+  - Fondo: Blanco (#FFFFFF)
+  - Texto: Carbón (#111111)
+  - CTAs: Dorado premium
   - Acentos: Dorado (solo precios/énfasis)
   
   EDITAR: Cambiar colores principales aquí
@@ -19,46 +20,50 @@
 
 @layer base {
   :root {
-    /* EDITAR: Colores principales del tema */
-    --background: 240 10% 4%;
-    --foreground: 0 0% 95%;
+    /* EDITAR: Colores principales del tema claro */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
 
-    --card: 240 10% 6%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
 
-    --popover: 240 10% 6%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
 
-    /* EDITAR: Color primario - Rojo sangre para CTAs */
-    --primary: 351 100% 41%;
+    /* EDITAR: Color primario - Dorado premium para CTAs */
+    --primary: 43 71% 47%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 10% 12%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
 
-    --muted: 240 10% 15%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
     /* EDITAR: Color de acento - Dorado para precios/énfasis */
     --accent: 43 71% 47%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    /* Rojo para urgencia/botón secundario */
+    --destructive: 351 100% 41%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 10% 15%;
-    --input: 240 10% 15%;
-    --ring: 351 100% 41%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 43 71% 47%;
 
     --radius: 0.75rem;
 
     /* Custom colors */
     --gold: 43 71% 47%;
-    --gold-glow: 43 71% 47%;
-    --red-glow: 351 100% 41%;
-    --carbon: 240 10% 4%;
-    --carbon-light: 240 10% 8%;
-    --carbon-lighter: 240 10% 12%;
+    --gold-dark: 43 71% 40%;
+    --carbon: 0 0% 7%;
+    --carbon-light: 0 0% 96%;
+    --carbon-lighter: 0 0% 98%;
+    
+    /* Colores para cards */
+    --card-border: 0 0% 90%;
+    --card-shadow: 0 0% 0%;
   }
 }
 
@@ -78,25 +83,17 @@
 }
 
 @layer components {
-  /* Glow effects - Premium subtle */
-  .glow-red {
-    box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.4),
-                0 0 40px -10px hsl(var(--primary) / 0.2);
-  }
-
+  /* Glow effects - Premium subtle (for dark sections) */
   .glow-gold {
-    box-shadow: 0 0 20px -5px hsl(var(--gold) / 0.4),
-                0 0 40px -10px hsl(var(--gold) / 0.2);
+    box-shadow: 0 0 20px -5px hsl(var(--gold) / 0.3),
+                0 0 40px -10px hsl(var(--gold) / 0.15);
   }
 
-  /* Premium card styling */
+  /* Premium card styling - White with subtle shadow */
   .card-premium {
-    @apply bg-card border border-border/50 rounded-xl;
-    background: linear-gradient(
-      180deg,
-      hsl(var(--card)) 0%,
-      hsl(var(--carbon-light)) 100%
-    );
+    @apply bg-card border border-border rounded-xl;
+    box-shadow: 0 2px 8px -2px hsl(var(--card-shadow) / 0.06),
+                0 4px 16px -4px hsl(var(--card-shadow) / 0.04);
   }
 
   /* Text gradient gold */
@@ -105,17 +102,18 @@
     background-image: linear-gradient(
       135deg,
       hsl(var(--gold)) 0%,
-      hsl(43 85% 60%) 50%,
+      hsl(43 85% 55%) 50%,
       hsl(var(--gold)) 100%
     );
   }
 
-  /* Overlay for text on images */
-  .overlay-dark {
+  /* Overlay for text on images - Left to right gradient */
+  .overlay-hero {
     background: linear-gradient(
-      180deg,
-      hsl(var(--background) / 0.9) 0%,
-      hsl(var(--background) / 0.95) 100%
+      90deg,
+      hsl(var(--carbon) / 0.65) 0%,
+      hsl(var(--carbon) / 0.35) 50%,
+      hsl(var(--carbon) / 0.10) 100%
     );
   }
 
@@ -144,11 +142,16 @@
 
   @keyframes pulse-cta {
     0%, 100% {
-      box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
+      box-shadow: 0 0 0 0 hsl(var(--gold) / 0.4);
     }
     50% {
-      box-shadow: 0 0 0 12px hsl(var(--primary) / 0);
+      box-shadow: 0 0 0 12px hsl(var(--gold) / 0);
     }
+  }
+
+  /* Section background alternating */
+  .section-alt {
+    @apply bg-muted/50;
   }
 }
 
@@ -163,9 +166,9 @@
     @apply max-w-7xl mx-auto;
   }
 
-  /* Text shadow for legibility */
+  /* Text shadow for legibility on images */
   .text-shadow {
-    text-shadow: 0 2px 10px hsl(var(--background) / 0.8);
+    text-shadow: 0 2px 10px hsl(var(--carbon) / 0.8);
   }
 
   /* Focus ring for accessibility */

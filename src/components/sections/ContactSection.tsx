@@ -21,7 +21,7 @@ export function ContactSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              ¿Dónde encontrarnos?
+              Ubicación
             </h2>
             <p className="text-lg text-muted-foreground">
               Visítanos en Barranquilla o contáctanos por WhatsApp
@@ -32,7 +32,7 @@ export function ContactSection() {
             {/* Mapa */}
             <div className="card-premium overflow-hidden">
               {/* Iframe de Google Maps */}
-              <div className="aspect-video bg-carbon-light">
+              <div className="aspect-video bg-muted">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.0!2d-74.8!3d10.96!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zQ2FsbGUgM0IsIENhcnJlcmEgMjUsIEJhcnJhbnF1aWxsYQ!5e0!3m2!1ses!2sco!4v1"
                   width="100%"
@@ -42,7 +42,6 @@ export function ContactSection() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Ubicación Dr. Sarcasmo"
-                  className="grayscale hover:grayscale-0 transition-all duration-500"
                 />
               </div>
               

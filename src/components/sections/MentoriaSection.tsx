@@ -1,92 +1,113 @@
 /**
  * =============================================================
- * MENTORÍA SECTION - MENTORÍA 1 A 1
+ * MENTORIA SECTION - MENTORÍA 1 A 1
  * =============================================================
- * EDITAR: Precios de mentoría (actual y tachado)
+ * EDITAR: Precios de mentoría, descripción, bullets
  * =============================================================
  */
 
-import { Zap, Target, ClipboardList, UserCheck } from "lucide-react";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { WHATSAPP_LINKS, ANALYTICS_EVENTS } from "@/lib/whatsapp";
+import { Brain, Target, ClipboardList, Calendar } from "lucide-react";
+import { WHATSAPP_LINKS, trackEvent, ANALYTICS_EVENTS } from "@/lib/whatsapp";
 
 // EDITAR: Lo que incluye la mentoría
 const MENTORIA_INCLUDES = [
   {
-    icon: Target,
-    text: "Diagnóstico del bloqueo",
+    icon: Brain,
+    text: "Diagnóstico del bloqueo principal",
   },
   {
     icon: ClipboardList,
-    text: "Plan de ejecución",
+    text: "Plan de ejecución personalizado",
   },
   {
-    icon: UserCheck,
-    text: "Sesión privada",
+    icon: Target,
+    text: "Sesión privada de PNL",
   },
 ];
 
 export function MentoriaSection() {
-  return (
-    <section id="mentoria" className="section-padding section-alt">
-      <div className="container-custom">
-        <div className="max-w-4xl mx-auto">
-          {/* Main Card */}
-          <div className="card-premium p-8 md:p-12 border-primary/20">
-            <div className="text-center mb-8">
-              {/* EDITAR: Título */}
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                Mentoría 1 a 1{" "}
-                <span className="text-muted-foreground font-normal">(sin rodeos)</span>
-              </h2>
+  const scrollToForm = (preselect: string) => {
+    // Scroll to form and preselect mentoring
+    const formSection = document.getElementById("agendar");
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: "smooth" });
+      // Try to preselect mentoring in form
+      setTimeout(() => {
+        const select = document.querySelector('select[name="interes"]') as HTMLSelectElement;
+        if (select) {
+          select.value = preselect;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+      }, 500);
+    }
+  };
 
-              {/* EDITAR: Precios */}
-              <div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
-                <span className="text-sm text-muted-foreground uppercase tracking-wide">HOY</span>
-                <span className="text-3xl md:text-4xl font-bold text-gold-gradient">
-                  $150.000
-                </span>
-                <span className="text-xl text-muted-foreground line-through">
-                  $300.000
-                </span>
-                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-bold">
-                  50% OFF
-                </span>
-              </div>
+  return (
+    <section id="mentoria" className="py-20 md:py-28 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Image */}
+          <div className="relative order-2 lg:order-1">
+            <div className="aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src="/images/profile.jpg"
+                alt="Julián Vargas - Dr. Sarcasmo en sesión de mentoría"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Decorative */}
+            <div className="absolute -z-10 top-8 -left-8 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl" />
+          </div>
+
+          {/* Content */}
+          <div className="order-1 lg:order-2">
+            <span className="inline-block px-4 py-1 bg-red-100 text-red-600 font-semibold text-sm rounded-full mb-4">
+              50% OFF - Solo por hoy
+            </span>
+
+            {/* EDITAR: Título */}
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-blue mb-4">
+              Mentoría 1 a 1
+            </h2>
+            <p className="text-xl text-gray-700 mb-6">
+              Tú y yo, de frente, sin rodeos. 🧠⚡
+            </p>
+
+            {/* EDITAR: Precios */}
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-4xl font-bold text-brand-gold">$150.000</span>
+              <span className="text-xl text-gray-400 line-through">$300.000</span>
+              <span className="px-3 py-1 bg-red-100 text-red-600 text-sm font-bold rounded-full">
+                -50%
+              </span>
             </div>
 
+            {/* EDITAR: Descripción */}
+            <p className="text-gray-600 leading-relaxed mb-8">
+              Una sesión privada de PNL para descuartizar tus bloqueos. 
+              Si te ofende la verdad, no compres. Si quieres resultados, hablemos.
+            </p>
+
             {/* What's included */}
-            <div className="grid md:grid-cols-3 gap-4 mb-10">
+            <div className="space-y-4 mb-8">
               {MENTORIA_INCLUDES.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-5 h-5 text-primary" />
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-brand-gold/10 flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-brand-gold" />
                   </div>
-                  <p className="text-foreground font-medium text-sm">{item.text}</p>
+                  <span className="text-gray-700 font-medium">{item.text}</span>
                 </div>
               ))}
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/agenda"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold bg-primary text-primary-foreground hover:brightness-110 rounded-lg transition-all duration-300 glow-gold"
-              >
-                Agendar mentoría
-              </a>
-              <WhatsAppButton
-                href={WHATSAPP_LINKS.mentoria}
-                variant="secondary"
-                size="lg"
-                eventName={ANALYTICS_EVENTS.CLICK_WHATSAPP_MENTORIA}
-              >
-                Consultar por WhatsApp
-              </WhatsAppButton>
-            </div>
+            {/* CTA */}
+            <button
+              onClick={() => scrollToForm("mentoria")}
+              className="w-full sm:w-auto btn-primary btn-lg"
+            >
+              <Calendar className="w-5 h-5" />
+              RESERVAR SESIÓN (50% OFF)
+            </button>
           </div>
         </div>
       </div>

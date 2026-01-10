@@ -6,7 +6,7 @@
  * =============================================================
  */
 
-import { MessageCircle, MapPin, Heart } from "lucide-react";
+import { MessageCircle, MapPin } from "lucide-react";
 import { ADDRESS, WHATSAPP_NUMBER } from "@/lib/whatsapp";
 
 export function Footer() {
@@ -18,9 +18,9 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <a href="/" className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <span className="text-primary">Dr.</span>
-              <span>Sarcasmo</span>
+            <a href="/" className="flex items-center gap-1 text-xl font-bold mb-4">
+              <span className="text-brand-blue">Dr.</span>
+              <span className="text-foreground">Sarcasmo</span>
             </a>
             <p className="text-muted-foreground text-sm">
               PNL para ventas y liderazgo sin anestesia.
@@ -32,7 +32,7 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Contacto</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2 text-muted-foreground">
-                <MessageCircle className="w-4 h-4 text-primary" />
+                <MessageCircle className="w-4 h-4 text-brand-gold" />
                 <a
                   href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
@@ -43,7 +43,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="w-4 h-4 text-primary mt-0.5" />
+                <MapPin className="w-4 h-4 text-brand-gold mt-0.5" />
                 <span>
                   {ADDRESS.street}<br />
                   {ADDRESS.city}, {ADDRESS.country}
@@ -72,7 +72,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/agenda" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#agendar" className="text-muted-foreground hover:text-foreground transition-colors">
                   Agendar
                 </a>
               </li>
@@ -85,8 +85,9 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             © {currentYear} Julián Vargas Montagut (Dr. Sarcasmo). Todos los derechos reservados.
           </p>
-          <p className="text-xs text-muted-foreground/60 mt-2 flex items-center justify-center gap-1">
-            Hecho con <Heart className="w-3 h-3 text-primary" /> en Barranquilla
+          {/* EDITAR: Créditos */}
+          <p className="text-xs text-muted-foreground/60 mt-2">
+            Hecho por Brothers Tic S.A.S.
           </p>
         </div>
       </div>

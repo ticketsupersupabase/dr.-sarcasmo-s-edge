@@ -1,93 +1,94 @@
 /**
  * =============================================================
- * HERO SECTION - FULL BLEED IMAGE + GRADIENT OVERLAY
+ * HERO SECTION - PREMIUM (FULL BG + OVERLAY)
  * =============================================================
- * EDITAR: Textos del hero, imagen de fondo
- * TODO: Reemplazar /public/images/hero.jpg por foto real
+ * EDITAR: Textos, CTAs y imagen de fondo
+ * - H1 en azul (autoridad)
+ * - CTA dorado estable (sin saltos)
  * =============================================================
  */
 
-import { ArrowRight, Calendar, MapPin, MessageCircle } from "lucide-react";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { WHATSAPP_LINKS, ANALYTICS_EVENTS } from "@/lib/whatsapp";
+import { MessageCircle, Calendar, CheckCircle, MapPin } from "lucide-react";
+import { WHATSAPP_LINKS, ANALYTICS_EVENTS, trackEvent } from "@/lib/whatsapp";
 
 export function HeroSection() {
+  const handleWhatsAppClick = () => {
+    trackEvent(ANALYTICS_EVENTS.CLICK_WHATSAPP_HERO);
+  };
+
+  const scrollToForm = () => {
+    const formSection = document.getElementById("agendar");
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image - Full Bleed */}
-      {/* TODO: Reemplazar por /public/images/hero.jpg cuando esté disponible */}
+    <section className="relative min-h-[90vh] flex items-center">
+      {/* Background Image - NO lazy load (above the fold) */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: 'url("/images/hero.jpg")',
-        }}
-      />
-      
-      {/* Overlay gradient - Left to right (dark to transparent) */}
-      <div className="absolute inset-0 overlay-hero" />
-      
-      <div className="container-custom px-4 md:px-8 relative z-10 py-24 md:py-32">
+        style={{ backgroundImage: "url('/images/hero.jpg')" }}
+      >
+        <div className="absolute inset-0 overlay-hero" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container-custom px-4 md:px-8 py-24 md:py-32">
         <div className="max-w-2xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
-            <MapPin className="w-4 h-4" />
-            Barranquilla | Atención por WhatsApp
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-border shadow-sm mb-6">
+            <MapPin className="w-4 h-4 text-brand-gold" />
+            <span className="text-sm font-medium text-foreground">Barranquilla · Atención por WhatsApp</span>
           </div>
 
-          {/* EDITAR: H1 principal */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-4 text-shadow">
-            PNL para ventas y liderazgo.{" "}
-            <span className="text-primary">Sin anestesia.</span>
+          {/* H1 - Azul profundo */}
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-brand-blue leading-tight mb-6">
+            Este libro no te va a motivar… te va a despertar.
           </h1>
 
-          {/* EDITAR: Subtítulo */}
-          <p className="text-xl md:text-2xl text-white/90 mb-8 text-shadow">
-            No vengo a motivarte. Vengo a que ejecutes.
+          {/* Subtítulo */}
+          <p className="text-lg md:text-xl text-foreground/90 mb-8 leading-relaxed">
+            Para personas frustradas, estancadas o cansadas de repetir la misma vida, 
+            que saben que están hechas para más.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <WhatsAppButton
-              href={WHATSAPP_LINKS.accionInmediata}
-              variant="hero"
-              size="lg"
-              eventName={ANALYTICS_EVENTS.CLICK_WHATSAPP_HERO}
-            >
-              <MessageCircle className="w-5 h-5" />
-              Tomar acción por WhatsApp
-            </WhatsAppButton>
+          {/* Bullets */}
+          <ul className="space-y-3 mb-8">
+            {["Para quien no quiere ser mediocre", "Para quien está cansado de fracasar en silencio", "Para quien quiere reprogramar su mente y ejecutar"].map((item, index) => (
+              <li key={index} className="flex items-center gap-3 text-foreground">
+                <CheckCircle className="w-5 h-5 text-brand-gold flex-shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
 
-            <a
-              href="/agenda"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border border-white/30 rounded-lg transition-all duration-300 focus-ring"
-            >
-              <Calendar className="w-5 h-5" />
-              Agendar mentoría
+          {/* CTAs - Estables sin saltos */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button onClick={scrollToForm} className="btn-hero pulse-cta">
+              Quiero desmotivarme para despertar
+            </button>
+            <a href={WHATSAPP_LINKS.accionInmediata} target="_blank" rel="noopener noreferrer" onClick={handleWhatsAppClick} className="btn-secondary">
+              <MessageCircle className="w-5 h-5" />
+              Abrir WhatsApp
             </a>
           </div>
+
+          <p className="mt-8 text-sm text-muted-foreground">+20 años de experiencia · +1 millón de personas impactadas</p>
         </div>
       </div>
 
       {/* Mobile Sticky CTA Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-border shadow-lg p-3">
-        <div className="flex gap-2">
-          <WhatsAppButton
-            href={WHATSAPP_LINKS.accionInmediata}
-            variant="hero"
-            size="md"
-            eventName={ANALYTICS_EVENTS.CLICK_WHATSAPP_HERO}
-            className="flex-1"
-          >
-            <MessageCircle className="w-4 h-4" />
-            WhatsApp
-          </WhatsAppButton>
-          <a
-            href="/agenda"
-            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 font-semibold bg-secondary text-foreground hover:bg-secondary/80 border border-border rounded-lg transition-all"
-          >
-            <Calendar className="w-4 h-4" />
-            Agendar
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-border shadow-lg">
+        <div className="flex items-center gap-2 p-3">
+          <a href={WHATSAPP_LINKS.accionInmediata} target="_blank" rel="noopener noreferrer" onClick={handleWhatsAppClick} className="flex-1 btn-primary min-w-0">
+            <MessageCircle className="w-5 h-5 flex-shrink-0" />
+            <span className="truncate">WhatsApp</span>
           </a>
+          <button onClick={scrollToForm} className="flex-1 btn-secondary min-w-0">
+            <Calendar className="w-5 h-5 flex-shrink-0" />
+            <span className="truncate">Agendar</span>
+          </button>
         </div>
       </div>
     </section>

@@ -1,63 +1,75 @@
 /**
  * =============================================================
- * LOGOS SECTION - CARRUSEL DE CLIENTES/INSTITUCIONES
+ * LOGOS SECTION - CARRUSEL DE INSTITUCIONES (MARQUEE)
  * =============================================================
  * REGLA: NO descargar logos de internet
  * Mostrar SOLO logos suministrados por el cliente en /public/logos/
- * TODO: Agregar logos reales (solo con autorización)
+ * 
+ * EDITAR: Lista de logos autorizados
+ * EDITAR: Velocidad de animación (--marquee-speed en CSS)
+ * 
+ * Animación: SOLO transform: translateX (sin layout shift)
+ * Respeta prefers-reduced-motion
  * =============================================================
  */
 
-// TODO: Agregar logos reales proporcionados por el cliente
-// Los logos deben estar en /public/logos/ con autorización
+// EDITAR: Agregar logos autorizados aquí (solo con permiso del cliente)
 const LOGOS = [
-  // EDITAR: Agregar logos autorizados aquí
-  // { src: "/logos/sena.png", alt: "SENA", name: "SENA" },
-  // { src: "/logos/uninorte.png", alt: "Universidad del Norte", name: "Universidad del Norte" },
-  // { src: "/logos/cliente-1.png", alt: "Cliente 1", name: "Cliente 1" },
+  { src: "/logos/sena.png", alt: "Logo SENA", name: "SENA" },
+  { src: "/logos/universidad-atlantico.png", alt: "Logo Universidad del Atlántico", name: "Universidad del Atlántico" },
+  { src: "/logos/americana.png", alt: "Logo Americana Institución Universitaria", name: "Americana" },
+  { src: "/logos/simon-bolivar.png", alt: "Logo Universidad Simón Bolívar", name: "Universidad Simón Bolívar" },
+  { src: "/logos/universidad-costa.png", alt: "Logo Universidad de la Costa", name: "Universidad de la Costa" },
+  { src: "/logos/unibarranquilla.png", alt: "Logo Institución Universitaria de Barranquilla", name: "IU Barranquilla" },
 ];
 
 export function LogosSection() {
-  // Si no hay logos, mostrar placeholder
+  // Si no hay logos, no mostrar la sección
   if (LOGOS.length === 0) {
-    return (
-      <section className="py-12 border-y border-border/30 bg-carbon-light/50">
-        <div className="container-custom px-4 md:px-8">
-          <p className="text-center text-muted-foreground text-sm">
-            {/* TODO: Agregar logos de clientes/instituciones */}
-            Han confiado equipos de empresas e instituciones reconocidas
-          </p>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   return (
-    <section className="py-12 border-y border-border/30 bg-carbon-light/50 overflow-hidden">
+    <section className="py-10 border-y border-border/50 bg-white">
       <div className="container-custom px-4 md:px-8 mb-6">
-        <p className="text-center text-muted-foreground text-sm mb-8">
-          Han confiado en Dr. Sarcasmo:
+        <p className="text-center text-muted-foreground text-sm">
+          {/* EDITAR: Título del carrusel */}
+          Universidades y organizaciones donde se ha presentado
         </p>
       </div>
       
-      {/* Marquee container */}
-      <div className="relative">
+      {/* Marquee container - Animación con transform solamente */}
+      <div className="marquee-container relative">
         {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        <div className="marquee-fade-left" />
+        <div className="marquee-fade-right" />
         
-        {/* Scrolling logos */}
-        <div className="flex marquee">
-          {/* Duplicate logos for seamless loop */}
-          {[...LOGOS, ...LOGOS].map((logo, index) => (
+        {/* Scrolling logos - Duplicados para loop continuo */}
+        <div className="marquee-track">
+          {/* Primera copia */}
+          {LOGOS.map((logo, index) => (
             <div
-              key={`${logo.name}-${index}`}
-              className="flex-shrink-0 mx-12 flex items-center justify-center h-16"
+              key={`a-${logo.name}-${index}`}
+              className="flex-shrink-0 mx-10 flex items-center justify-center h-12 md:h-14"
             >
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity filter brightness-0 invert"
+                className="h-10 md:h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+            </div>
+          ))}
+          {/* Segunda copia para loop continuo */}
+          {LOGOS.map((logo, index) => (
+            <div
+              key={`b-${logo.name}-${index}`}
+              className="flex-shrink-0 mx-10 flex items-center justify-center h-12 md:h-14"
+            >
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                className="h-10 md:h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
                 loading="lazy"
               />
             </div>
@@ -67,8 +79,9 @@ export function LogosSection() {
       
       {/* Disclaimer legal */}
       <div className="container-custom px-4 md:px-8 mt-6">
-        <p className="text-center text-muted-foreground/50 text-xs">
-          Logos mostrados con autorización del cliente.
+        <p className="text-center text-muted-foreground/60 text-xs">
+          {/* TODO: Confirmar autorización de todos los logos */}
+          Logos mostrados con autorización.
         </p>
       </div>
     </section>

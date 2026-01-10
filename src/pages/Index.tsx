@@ -1,15 +1,13 @@
 /**
  * =============================================================
- * INDEX PAGE - LANDING PRINCIPAL
+ * INDEX PAGE - LANDING PRINCIPAL (PREMIUM)
  * =============================================================
- * Página principal de alta conversión para Dr. Sarcasmo
- * EDITAR: Orden de secciones y contenido en cada componente
+ * Estructura: Hero + Form arriba, secciones, cierre con form
  * =============================================================
  */
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { FloatingWhatsApp } from "@/components/ui/WhatsAppButton";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { LogosSection } from "@/components/sections/LogosSection";
 import { PainSection } from "@/components/sections/PainSection";
@@ -18,29 +16,42 @@ import { MentoriaSection } from "@/components/sections/MentoriaSection";
 import { EmpresasSection } from "@/components/sections/EmpresasSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { WHATSAPP_LINKS } from "@/lib/whatsapp";
+import { SchedulingForm } from "@/components/SchedulingForm";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header sticky */}
       <Header />
 
-      {/* Main content */}
       <main>
-        {/* Hero - El Filtro */}
+        {/* Hero */}
         <HeroSection />
 
-        {/* Logos de clientes/instituciones */}
+        {/* Formulario ARRIBA (debajo del hero) */}
+        <section id="agendar" className="section-padding bg-white">
+          <div className="container-custom">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-blue text-center mb-4">
+                Agenda / Cotiza por WhatsApp
+              </h2>
+              <p className="text-center text-muted-foreground mb-8">
+                Completa el formulario y te contactamos por WhatsApp.
+              </p>
+              <SchedulingForm />
+            </div>
+          </div>
+        </section>
+
+        {/* Logos de instituciones */}
         <LogosSection />
 
-        {/* El Dolor - Realidad */}
+        {/* El Dolor */}
         <PainSection />
 
-        {/* Libro "Desmotívame si puedes" */}
+        {/* Libro */}
         <BookSection />
 
-        {/* Mentoría 1 a 1 - Oferta Flash */}
+        {/* Mentoría 1 a 1 */}
         <MentoriaSection />
 
         {/* Programa Empresas */}
@@ -53,11 +64,7 @@ const Index = () => {
         <ContactSection />
       </main>
 
-      {/* Footer */}
       <Footer />
-
-      {/* Floating WhatsApp button (mobile) */}
-      <FloatingWhatsApp href={WHATSAPP_LINKS.accionInmediata} />
     </div>
   );
 };

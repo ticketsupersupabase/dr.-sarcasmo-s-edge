@@ -4,23 +4,23 @@
 
 /* 
   =============================================================
-  DESIGN SYSTEM - DR. SARCASMO
+  DESIGN SYSTEM - DR. SARCASMO (PREMIUM WHITE THEME)
   =============================================================
-  LIGHT PREMIUM THEME
+  EDITAR: Cambiar colores principales aquí
+  
   - Fondo: Blanco (#FFFFFF)
   - Texto: Carbón (#111111)
+  - Títulos: Azul profundo (autoridad)
   - CTAs: Dorado premium
-  - Acentos: Dorado (solo precios/énfasis)
-  
-  EDITAR: Cambiar colores principales aquí
+  - Precios: Dorado (solo énfasis)
   =============================================================
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    /* EDITAR: Colores principales del tema claro */
+    /* EDITAR: Colores principales del tema */
     --background: 0 0% 100%;
     --foreground: 0 0% 7%;
 
@@ -44,8 +44,8 @@
     --accent: 43 71% 47%;
     --accent-foreground: 0 0% 100%;
 
-    /* Rojo para urgencia/botón secundario */
-    --destructive: 351 100% 41%;
+    /* Rojo para urgencia/advertencia */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 90%;
@@ -54,15 +54,19 @@
 
     --radius: 0.75rem;
 
-    /* Custom colors */
-    --gold: 43 71% 47%;
-    --gold-dark: 43 71% 40%;
+    /* EDITAR: Brand colors - Tokens personalizados */
+    /* Azul profundo para títulos (autoridad) - #0B2A5B */
+    --brand-blue: 217 79% 20%;
+    /* Dorado premium - #C9A227 */
+    --brand-gold: 43 71% 47%;
+    
+    /* Carbon colors */
     --carbon: 0 0% 7%;
     --carbon-light: 0 0% 96%;
     --carbon-lighter: 0 0% 98%;
     
-    /* Colores para cards */
-    --card-border: 0 0% 90%;
+    /* Card styling */
+    --card-border: 0 0% 93%;
     --card-shadow: 0 0% 0%;
   }
 }
@@ -83,32 +87,127 @@
 }
 
 @layer components {
-  /* Glow effects - Premium subtle (for dark sections) */
+  /* 
+    =============================================================
+    BUTTON STYLES - NO LAYOUT SHIFT
+    =============================================================
+    REGLAS:
+    - NUNCA animar padding, border-width, font-size, height
+    - SOLO animar: transform, box-shadow, background-color, color
+    - Borde siempre presente (transparent en normal)
+    =============================================================
+  */
+  
+  /* Botón primario estable (dorado) */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-6 py-3 min-h-[44px] min-w-[200px];
+    @apply bg-primary text-primary-foreground;
+    @apply font-semibold text-base rounded-lg;
+    @apply border border-transparent;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-primary/90;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -8px hsl(var(--primary) / 0.4);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px -4px hsl(var(--primary) / 0.3);
+  }
+  
+  /* Botón secundario estable (outline) */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-6 py-3 min-h-[44px] min-w-[160px];
+    @apply bg-transparent text-foreground;
+    @apply font-semibold text-base rounded-lg;
+    @apply border border-border;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-secondary:hover {
+    @apply bg-muted border-primary/50;
+    transform: translateY(-1px);
+  }
+  
+  .btn-secondary:active {
+    transform: translateY(0);
+  }
+  
+  /* Botón hero (prominente, sin saltos) */
+  .btn-hero {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-8 py-4 min-h-[52px] min-w-[240px];
+    @apply bg-primary text-primary-foreground;
+    @apply font-bold text-lg rounded-xl;
+    @apply border border-transparent;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-hero:hover {
+    @apply bg-primary/90;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 32px -12px hsl(var(--primary) / 0.5);
+  }
+  
+  .btn-hero:active {
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Glow effect for buttons */
   .glow-gold {
-    box-shadow: 0 0 20px -5px hsl(var(--gold) / 0.3),
-                0 0 40px -10px hsl(var(--gold) / 0.15);
+    box-shadow: 0 0 20px -5px hsl(var(--brand-gold) / 0.3),
+                0 0 40px -10px hsl(var(--brand-gold) / 0.15);
   }
 
   /* Premium card styling - White with subtle shadow */
   .card-premium {
-    @apply bg-card border border-border rounded-xl;
+    @apply bg-card rounded-xl;
+    border: 1px solid hsl(var(--card-border));
     box-shadow: 0 2px 8px -2px hsl(var(--card-shadow) / 0.06),
                 0 4px 16px -4px hsl(var(--card-shadow) / 0.04);
   }
 
-  /* Text gradient gold */
-  .text-gold-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      hsl(var(--gold)) 0%,
-      hsl(43 85% 55%) 50%,
-      hsl(var(--gold)) 100%
-    );
+  /* Brand blue text (for titles) */
+  .text-brand-blue {
+    color: hsl(var(--brand-blue));
+  }
+  
+  /* Brand gold text (for prices) */
+  .text-brand-gold {
+    color: hsl(var(--brand-gold));
   }
 
-  /* Overlay for text on images - Left to right gradient */
+  /* Gold background accent box */
+  .bg-gold-accent {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--brand-gold) / 0.08) 0%,
+      hsl(var(--brand-gold) / 0.04) 100%
+    );
+    border: 1px solid hsl(var(--brand-gold) / 0.2);
+  }
+
+  /* Overlay for text on images - Left to right gradient (white) */
   .overlay-hero {
+    background: linear-gradient(
+      90deg,
+      hsl(0 0% 100% / 0.92) 0%,
+      hsl(0 0% 100% / 0.75) 40%,
+      hsl(0 0% 100% / 0.3) 70%,
+      transparent 100%
+    );
+  }
+  
+  /* Overlay for dark sections */
+  .overlay-dark {
     background: linear-gradient(
       90deg,
       hsl(var(--carbon) / 0.65) 0%,
@@ -117,15 +216,29 @@
     );
   }
 
-  /* Marquee animation for logos */
-  .marquee {
-    animation: marquee 30s linear infinite;
+  /* 
+    =============================================================
+    MARQUEE ANIMATION - LOGOS
+    =============================================================
+    - SOLO usa transform: translateX (sin layout shift)
+    - Respeta prefers-reduced-motion
+    =============================================================
+  */
+  .marquee-container {
+    overflow: hidden;
+    position: relative;
   }
-
-  .marquee:hover {
+  
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+  
+  .marquee-track:hover {
     animation-play-state: paused;
   }
-
+  
   @keyframes marquee {
     0% {
       transform: translateX(0);
@@ -134,24 +247,64 @@
       transform: translateX(-50%);
     }
   }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+    .marquee-container {
+      overflow-x: auto;
+    }
+  }
 
-  /* CTA pulse animation */
+  /* Fade edges for marquee */
+  .marquee-fade-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    background: linear-gradient(to right, hsl(var(--background)), transparent);
+    z-index: 10;
+    pointer-events: none;
+  }
+  
+  .marquee-fade-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    background: linear-gradient(to left, hsl(var(--background)), transparent);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* CTA pulse animation (subtle) */
   .pulse-cta {
-    animation: pulse-cta 2s ease-in-out infinite;
+    animation: pulse-cta 2.5s ease-in-out infinite;
   }
 
   @keyframes pulse-cta {
     0%, 100% {
-      box-shadow: 0 0 0 0 hsl(var(--gold) / 0.4);
+      box-shadow: 0 0 0 0 hsl(var(--brand-gold) / 0.3);
     }
     50% {
-      box-shadow: 0 0 0 12px hsl(var(--gold) / 0);
+      box-shadow: 0 0 0 10px hsl(var(--brand-gold) / 0);
+    }
+  }
+  
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-cta {
+      animation: none;
     }
   }
 
   /* Section background alternating */
   .section-alt {
-    @apply bg-muted/50;
+    @apply bg-muted/30;
   }
 }
 
@@ -168,11 +321,21 @@
 
   /* Text shadow for legibility on images */
   .text-shadow {
-    text-shadow: 0 2px 10px hsl(var(--carbon) / 0.8);
+    text-shadow: 0 2px 10px hsl(var(--carbon) / 0.3);
   }
 
   /* Focus ring for accessibility */
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+  
+  /* Price styling - gold and prominent */
+  .price-tag {
+    @apply text-brand-gold font-bold;
+  }
+  
+  /* Strike through for old prices */
+  .price-old {
+    @apply text-muted-foreground line-through text-sm;
   }
 }

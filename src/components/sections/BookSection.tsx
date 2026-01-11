@@ -3,11 +3,11 @@
  * BOOK SECTION - "DESMOTÍVAME SI PUEDES"
  * =============================================================
  * EDITAR: Precios del libro (físico y PDF)
- * TODO: Reemplazar placeholder por /public/images/book-cover.jpg
+ * Portada real en: /public/images/book-cover.jpg  -> se usa como /images/book-cover.jpg
  * =============================================================
  */
 
-import { Book, Download, Truck, Pen } from "lucide-react";
+import { Download, Truck, Pen } from "lucide-react";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { WHATSAPP_LINKS, ANALYTICS_EVENTS } from "@/lib/whatsapp";
 
@@ -19,35 +19,19 @@ export function BookSection() {
           {/* Book Image */}
           <div className="flex justify-center lg:justify-start">
             <div className="relative">
-              {/* TODO: Reemplazar placeholder por portada real del libro */}
               <div className="relative w-64 md:w-72 aspect-[2/3] rounded-xl overflow-hidden border border-border shadow-xl transform -rotate-2 hover:rotate-0 transition-transform duration-500">
-                {/* Placeholder - reemplazar con imagen real */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary flex flex-col items-center justify-center p-8">
-                  <Book className="w-14 h-14 text-white mb-6" />
-                  <h3 className="text-2xl font-bold text-white text-center mb-2">
-                    Desmotívame
-                  </h3>
-                  <p className="text-lg text-white/90 font-semibold text-center">
-                    si puedes
-                  </p>
-                  <div className="mt-6 text-sm text-white/70 text-center">
-                    Dr. Sarcasmo
-                  </div>
-                </div>
-                {/* Cuando tengas la imagen real, usa esto:
-                <img 
-                  src="/images/book-cover.jpg" 
-                  alt="Libro Desmotívame si puedes" 
+                <img
+                  src="/images/book-cover.jpg"
+                  alt="Libro Desmotívame si puedes"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
-                */}
               </div>
             </div>
           </div>
 
           {/* Book Info */}
           <div>
-            {/* EDITAR: Título y descripción del libro */}
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Desmotívame si puedes
             </h2>
@@ -56,7 +40,6 @@ export function BookSection() {
               Historias reales de gente que dejó de quejarse y empezó a cerrar.
             </p>
 
-            {/* Pricing Cards */}
             <div className="space-y-4 mb-8">
               {/* Libro Físico */}
               <div className="card-premium p-6 hover:border-primary/30 transition-colors">
@@ -75,11 +58,10 @@ export function BookSection() {
                       </div>
                     </div>
                   </div>
-                  {/* EDITAR: Precio libro físico */}
-                  <div className="text-2xl font-bold text-gold-gradient">
-                    $89.000
-                  </div>
+
+                  <div className="text-2xl font-bold text-gold-gradient">$89.000</div>
                 </div>
+
                 <div className="mt-4">
                   <WhatsAppButton
                     href={WHATSAPP_LINKS.libroFisico}
@@ -109,11 +91,10 @@ export function BookSection() {
                       </p>
                     </div>
                   </div>
-                  {/* EDITAR: Precio PDF */}
-                  <div className="text-2xl font-bold text-gold-gradient">
-                    $50.000
-                  </div>
+
+                  <div className="text-2xl font-bold text-gold-gradient">$50.000</div>
                 </div>
+
                 <div className="mt-4">
                   <WhatsAppButton
                     href={WHATSAPP_LINKS.libroPDF}
@@ -128,7 +109,6 @@ export function BookSection() {
               </div>
             </div>
 
-            {/* Microcopy */}
             <p className="text-sm text-muted-foreground">
               Pagos y envío se confirman por WhatsApp.
             </p>

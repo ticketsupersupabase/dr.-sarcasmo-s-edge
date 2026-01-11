@@ -27,23 +27,12 @@ const Index = () => {
         {/* Hero */}
         <HeroSection />
 
-        {/* Formulario ARRIBA (debajo del hero) */}
-        <section id="agendar" className="section-padding bg-white">
-          <div className="container-custom">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-brand-blue text-center mb-4">
-                Agenda / Cotiza por WhatsApp
-              </h2>
-              <p className="text-center text-muted-foreground mb-8">
-                Completa el formulario y te contactamos por WhatsApp.
-              </p>
-              <SchedulingForm />
-            </div>
-          </div>
-        </section>
 
         {/* Logos de instituciones */}
         <LogosSection />
+
+        {/* Quién es Julián + Cierre */}
+        <AboutSection />
 
         {/* El Dolor */}
         <PainSection />
@@ -57,8 +46,22 @@ const Index = () => {
         {/* Programa Empresas */}
         <EmpresasSection />
 
-        {/* Quién es Julián + Cierre */}
-        <AboutSection />
+        
+
+          {/* Formulario ARRIBA (debajo del hero) */}
+        <section id="agendar" className="section-padding bg-white">
+          <div className="container-custom">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-blue text-center mb-4">
+                Agenda / Cotiza por WhatsApp
+              </h2>
+              <p className="text-center text-muted-foreground mb-8">
+                Completa el formulario y te contactamos por WhatsApp.
+              </p>
+              <SchedulingForm />
+            </div>
+          </div>
+        </section>
 
         {/* Mapa + Contacto */}
         <ContactSection />

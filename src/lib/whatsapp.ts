@@ -7,7 +7,7 @@
  */
 
 // EDITAR: Número de WhatsApp (formato internacional sin +)
-export const WHATSAPP_NUMBER = "573022669226";
+export const WHATSAPP_NUMBER = "573052669226";
 
 // EDITAR: Links de WhatsApp prellenados para cada ruta de conversión
 export const WHATSAPP_LINKS = {
